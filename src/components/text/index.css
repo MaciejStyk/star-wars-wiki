@@ -1,0 +1,159 @@
+/* h1 =================================== */
+
+.h1regular {
+  font-size: 1.5rem;
+  font-weight: 400;
+  line-height: 2.25rem;
+}
+
+.h1medium {
+  font-size: 1.5rem;
+  font-weight: 500;
+  line-height: 2.25rem;
+}
+
+.h1semiBold {
+  font-size: 1.5rem;
+  font-weight: 600;
+  line-height: 2.25rem;
+}
+
+.h1bold {
+  font-size: 1.5rem;
+  font-weight: 700;
+  line-height: 2.25rem;
+}
+
+.h1extraBold {
+  font-size: 1.5rem;
+  font-weight: 800;
+  line-height: 2.25rem;
+}
+
+/* h2 =================================== */
+
+.h2regular {
+  font-size: 1.25rem;
+  font-weight: 400;
+  line-height: 1.875rem;
+}
+
+.h2medium {
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.875rem;
+}
+
+.h2semiBold {
+  font-size: 1.25rem;
+  font-weight: 600;
+  line-height: 1.875rem;
+}
+
+.h2bold {
+  font-size: 1.25rem;
+  font-weight: 700;
+  line-height: 1.875rem;
+}
+
+.h2extraBold {
+  font-size: 1.25rem;
+  font-weight: 800;
+  line-height: 1.875rem;
+}
+
+/* primary ============================== */
+
+.primary {
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.5rem;
+}
+
+.primaryMedium {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1.5rem;
+}
+
+.primarySemiBold {
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5rem;
+}
+
+.primaryBold {
+  font-size: 1rem;
+  font-weight: 700;
+  line-height: 1.5rem;
+}
+
+.primaryExtraBold {
+  font-size: 1rem;
+  font-weight: 800;
+  line-height: 1.5rem;
+}
+
+/* small ================================ */
+
+.small {
+  font-size: 0.875rem;
+  font-weight: 400;
+  line-height: 1.3125rem;
+}
+
+.smallMedium {
+  font-size: 0.875rem;
+  font-weight: 500;
+  line-height: 1.3125rem;
+}
+
+.smallSemiBold {
+  font-size: 0.875rem;
+  font-weight: 600;
+  line-height: 1.3125rem;
+}
+
+.smallBold {
+  font-size: 0.875rem;
+  font-weight: 700;
+  line-height: 1.3125rem;
+}
+
+.smallExtraBold {
+  font-size: 0.875rem;
+  font-weight: 800;
+  line-height: 1.3125rem;
+}
+
+/* xSmall =============================== */
+
+.xSmall {
+  font-size: 0.75rem;
+  font-weight: 400;
+  line-height: 1.125rem;
+}
+
+.xSmallMedium {
+  font-size: 0.75rem;
+  font-weight: 500;
+  line-height: 1.125rem;
+}
+
+.xSmallSemiBold {
+  font-size: 0.75rem;
+  font-weight: 600;
+  line-height: 1.125rem;
+}
+
+.xSmallBold {
+  font-size: 0.75rem;
+  font-weight: 700;
+  line-height: 1.125rem;
+}
+
+.xSmallExtraBold {
+  font-size: 0.75rem;
+  font-weight: 800;
+  line-height: 1.125rem;
+}
