@@ -39,10 +39,10 @@ export const Planets: FC = () => {
       {listData.map((planet) => (
         <Components.ListItem
           key={planet.id}
-          onClick={() => navigate(`${Types.PATH.CHARACTERS}/${planet.id}`)}
+          onClick={() => navigate(`${Types.PATH.PLANETS}/${planet.id}`)}
         >
           <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
-          <Components.Text text={planet.name} type="h1semiBold" />
+          {planet.name}
         </Components.ListItem>
       ))}
       <Pagination

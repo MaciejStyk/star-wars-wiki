@@ -42,7 +42,7 @@ export const Characters: FC = () => {
           onClick={() => navigate(`${Types.PATH.CHARACTERS}/${character.id}`)}
         >
           <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
-          <Components.Text text={character.name} type="h1semiBold" />
+          {character.name}
         </Components.ListItem>
       ))}
       <Pagination

@@ -5,4 +5,4 @@ export * from "./header";
 export * from "./link";
 export * from "./list";
 export * from "./portrait";
-export * from "./text";
+export * from "./title-row";

@@ -9,4 +9,6 @@ export const ImageWrapper = styled.div`
 
 export const Image = styled.img`
   height: 400px;
+  max-width: 100%;
+  object-fit: contain;
 `;

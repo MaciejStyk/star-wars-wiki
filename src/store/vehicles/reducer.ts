@@ -3,7 +3,7 @@ import { createReducer } from "@reduxjs/toolkit";
 import * as Types from "types";
 import * as Utils from "utils";
 
-import { fetchVehicles, fetchVehicle } from "./actions";
+import { fetchVehicles, fetchVehicle, fetchVehiclesById } from "./actions";
 
 const initialState: Types.IVehiclesReducer = {
   data: [],
@@ -34,18 +34,35 @@ export const vehiclesReducer = createReducer(initialState, (builder) => {
       state.loading.fetchVehicle = true;
     })
     .addCase(fetchVehicle.fulfilled, (state, action) => {
-      const fetchedPlanet = action.payload;
+      const fetchedVehicle = action.payload;
       state.error.fetchVehicle = undefined;
       state.loading.fetchVehicle = false;
       state.data =
         state.data.length !== 0
-          ? state.data.map((planet) =>
-              planet?.id === fetchedPlanet?.id ? fetchedPlanet : planet
+          ? state.data.map((vehicle) =>
+              vehicle?.id === fetchedVehicle?.id ? fetchedVehicle : vehicle
             )
-          : [fetchedPlanet];
+          : [fetchedVehicle];
     })
     .addCase(fetchVehicle.rejected, (state, action) => {
       state.error.fetchVehicle = action.payload;
       state.loading.fetchVehicle = false;
+    })
+    .addCase(fetchVehiclesById.pending, (state, action) => {
+      state.error.fetchVehicles = undefined;
+      state.loading.fetchVehicles = true;
+    })
+    .addCase(fetchVehiclesById.fulfilled, (state, action) => {
+      const fetchedVehicles = action.payload.map((vehicle) => ({
+        ...vehicle,
+        id: Utils.extractIdFrom(vehicle.url),
+      }));
+      state.error.fetchVehicles = undefined;
+      state.loading.fetchVehicles = false;
+      state.data = fetchedVehicles;
+    })
+    .addCase(fetchVehiclesById.rejected, (state, action) => {
+      state.error.fetchVehicles = action.payload;
+      state.loading.fetchVehicles = false;
     });
 });

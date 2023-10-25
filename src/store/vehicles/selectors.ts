@@ -11,6 +11,11 @@ export const selectVehicleById = (id?: string) =>
     vehicles.find((vehicle) => vehicle?.id === id)
   );
 
+export const selectVehiclesById = (ids: string[]) =>
+  createSelector(selectVehicles, (vehicles) =>
+    vehicles.filter((vehicle) => ids.includes(vehicle.id))
+  );
+
 export const selectVehiclesLoading: Selector<
   Types.AppState,
   Types.IVehiclesLoading

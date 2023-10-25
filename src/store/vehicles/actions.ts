@@ -34,3 +34,22 @@ export const fetchVehicle = createAsyncThunk(
     }
   }
 );
+
+export const fetchVehiclesById = createAsyncThunk(
+  "[Vehicles] Fetch vehicles by id",
+  async (vehicleIds: string[], thunkAPI) => {
+    try {
+      const fetchPromises = vehicleIds.map(async (vehicleId) => {
+        const response = await axios.get(
+          `${BASE_URL}${Types.ENDPOINTS.VEHICLES}/${vehicleId}/`
+        );
+        return response.data;
+      });
+      const data = await Promise.all(fetchPromises);
+      return data;
+    } catch (error) {
+      toast.error(`Failed to fetch vehicles. ${error}`);
+      return thunkAPI.rejectWithValue("Failed to fetch vehicles.");
+    }
+  }
+);

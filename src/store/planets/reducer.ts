@@ -34,15 +34,13 @@ export const planetsReducer = createReducer(initialState, (builder) => {
       state.loading.fetchPlanet = true;
     })
     .addCase(fetchPlanet.fulfilled, (state, action) => {
-      const fetchedPlanet = action.payload;
+      const fetchedPlanet = {
+        ...action.payload,
+        id: Utils.extractIdFrom(action.payload.url),
+      };
       state.error.fetchPlanet = undefined;
       state.loading.fetchPlanet = false;
-      state.data =
-        state.data.length !== 0
-          ? state.data.map((planet) =>
-              planet?.id === fetchedPlanet?.id ? fetchedPlanet : planet
-            )
-          : [fetchedPlanet];
+      state.data = [fetchedPlanet];
     })
     .addCase(fetchPlanet.rejected, (state, action) => {
       state.error.fetchPlanet = action.payload;

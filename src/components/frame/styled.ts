@@ -14,7 +14,7 @@ export const Main = styled.main`
 `;
 
 export const Wrapper = styled.div`
-  width: 95%;
-  max-width: 800px;
+  width: 85%;
+  max-width: 600px;
   padding: ${({ theme }) => theme.spacing.lg} 0;
 `;

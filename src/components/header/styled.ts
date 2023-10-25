@@ -15,10 +15,34 @@ export const Header = styled.header`
 `;
 
 export const Wrapper = styled.div`
-  width: 95%;
-  max-width: 800px;
+  width: 85%;
+  max-width: 600px;
   height: 100%;
   display: flex;
-  justify-content: center;
   align-items: center;
+  flex-direction: column;
+  justify-content: space-evenly;
+
+  @media (min-width: 350px) {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  @media (min-width: 450px) {
+    font-size: 1.25rem;
+  }
+`;
+
+interface IProps {
+  $isBold: boolean;
+}
+
+export const Link = styled.a<IProps>`
+  text-decoration: none;
+  display: flex;
+  flex-direction: inherit;
+  align-items: center;
+  cursor: pointer;
+  color: inherit;
+  font-weight: ${({ $isBold }) => ($isBold ? "600" : "400")};
 `;

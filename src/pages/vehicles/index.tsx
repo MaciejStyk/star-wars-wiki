@@ -39,10 +39,10 @@ export const Vehicles: FC = () => {
       {listData.map((vehicle) => (
         <Components.ListItem
           key={vehicle.id}
-          onClick={() => navigate(`${Types.PATH.CHARACTERS}/${vehicle.id}`)}
+          onClick={() => navigate(`${Types.PATH.VEHICLES}/${vehicle.id}`)}
         >
           <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
-          <Components.Text text={vehicle.name} type="h1semiBold" />
+          {vehicle.name}
         </Components.ListItem>
       ))}
       <Pagination
