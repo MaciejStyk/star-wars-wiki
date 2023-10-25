@@ -16,6 +16,11 @@ export const selectVehiclesById = (ids: string[]) =>
     vehicles.filter((vehicle) => ids.includes(vehicle.id))
   );
 
+export const selectVehiclesCount: Selector<
+  Types.AppState,
+  number | undefined
+> = ({ vehicles }) => vehicles.count;
+
 export const selectVehiclesLoading: Selector<
   Types.AppState,
   Types.IVehiclesLoading

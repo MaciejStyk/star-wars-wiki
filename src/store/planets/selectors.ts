@@ -11,6 +11,11 @@ export const selectPlanetById = (id?: string) =>
     planets.find((planet) => planet?.id === id)
   );
 
+export const selectPlanetsCount: Selector<
+  Types.AppState,
+  number | undefined
+> = ({ planets }) => planets.count;
+
 export const selectPlanetsLoading: Selector<
   Types.AppState,
   Types.IPlanetsLoading

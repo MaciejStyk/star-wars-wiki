@@ -15,7 +15,7 @@ import * as Utils from "utils";
 export const Character: FC = () => {
   const {
     spacing: { md },
-    palette: { secondaryBlack },
+    palette: { black },
   } = useTheme();
 
   const { characterId } = useParams();
@@ -39,9 +39,7 @@ export const Character: FC = () => {
       label: "Home planet",
       children: character?.homeworld ? (
         planetLoading.fetchPlanet ? (
-          <Spin
-            indicator={<LoadingOutlined style={{ color: secondaryBlack }} />}
-          />
+          <Spin indicator={<LoadingOutlined style={{ color: black }} />} />
         ) : (
           <a href={`${Types.PATH.PLANETS}/${homePlanetId}`}>
             {homePlanet?.name}
@@ -57,9 +55,7 @@ export const Character: FC = () => {
       children:
         character?.vehicles.length !== 0 ? (
           vehiclesLoading.fetchVehicles ? (
-            <Spin
-              indicator={<LoadingOutlined style={{ color: secondaryBlack }} />}
-            />
+            <Spin indicator={<LoadingOutlined style={{ color: black }} />} />
           ) : (
             vehicles.map((vehicle) => (
               <a key={vehicle.id} href={`${Types.PATH.VEHICLES}/${vehicle.id}`}>
@@ -140,7 +136,7 @@ export const Character: FC = () => {
   return (
     <Components.Wrapper>
       <Components.TitleRow>
-        <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
+        <Components.Avatar src={character?.image} />
         {character?.name}
       </Components.TitleRow>
       <Descriptions

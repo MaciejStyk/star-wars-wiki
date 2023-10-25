@@ -15,7 +15,7 @@ import * as Utils from "utils";
 export const Planet: FC = () => {
   const {
     spacing: { md },
-    palette: { secondaryBlack },
+    palette: { black },
   } = useTheme();
 
   const { planetId } = useParams();
@@ -42,9 +42,7 @@ export const Planet: FC = () => {
       children:
         planet?.residents.length !== 0 ? (
           charactersLoading.fetchCharacters ? (
-            <Spin
-              indicator={<LoadingOutlined style={{ color: secondaryBlack }} />}
-            />
+            <Spin indicator={<LoadingOutlined style={{ color: black }} />} />
           ) : (
             characters.map((character) => (
               <a
@@ -121,7 +119,7 @@ export const Planet: FC = () => {
   return (
     <Components.Wrapper>
       <Components.TitleRow>
-        <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
+        <Components.Avatar src={planet?.image} />
         {planet?.name}
       </Components.TitleRow>
       <Descriptions

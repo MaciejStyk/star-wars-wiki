@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
+import { VEHICLE_IMAGES, VEHICLE_AVATAR } from "const";
 import * as Types from "types";
 import * as Utils from "utils";
 
@@ -20,10 +21,15 @@ export const vehiclesReducer = createReducer(initialState, (builder) => {
     .addCase(fetchVehicles.fulfilled, (state, action) => {
       state.error.fetchVehicles = undefined;
       state.loading.fetchVehicles = false;
-      state.data = action.payload.map((vehicle: Types.IVehicle) => ({
-        ...vehicle,
-        id: Utils.extractIdFrom(vehicle.url),
-      }));
+      state.count = action.payload.count;
+      state.data = action.payload.results.map((vehicle: Types.IVehicle) => {
+        const vehicleId = Utils.extractIdFrom(vehicle.url);
+        return {
+          ...vehicle,
+          id: vehicleId,
+          image: VEHICLE_IMAGES[Number(vehicleId) - 1] || VEHICLE_AVATAR,
+        };
+      });
     })
     .addCase(fetchVehicles.rejected, (state, action) => {
       state.error.fetchVehicles = action.payload;
@@ -34,9 +40,11 @@ export const vehiclesReducer = createReducer(initialState, (builder) => {
       state.loading.fetchVehicle = true;
     })
     .addCase(fetchVehicle.fulfilled, (state, action) => {
+      const vehicleId = Utils.extractIdFrom(action.payload.url);
       const fetchedVehicle = {
         ...action.payload,
-        id: Utils.extractIdFrom(action.payload.url),
+        id: vehicleId,
+        image: VEHICLE_IMAGES[Number(vehicleId) - 1] || VEHICLE_AVATAR,
       };
       state.error.fetchVehicle = undefined;
       state.loading.fetchVehicle = false;

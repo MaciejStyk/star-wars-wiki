@@ -12,7 +12,7 @@ export const fetchCharacters = createAsyncThunk(
       const response = await axios.get(
         `${BASE_URL}${Types.ENDPOINTS.CHARACTERS}?page=${pageNumber}`
       );
-      return response.data.results;
+      return response.data;
     } catch (error) {
       toast.error(`Failed to fetch characters. ${error}`);
       return thunkAPI.rejectWithValue("Failed to fetch characters.");

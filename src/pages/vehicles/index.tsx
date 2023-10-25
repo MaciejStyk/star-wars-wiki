@@ -15,6 +15,7 @@ export const Vehicles: FC = () => {
   } = useTheme();
 
   const vehicles = useSelector(Store.selectVehicles);
+  const count = useSelector(Store.selectVehiclesCount);
   const loading = useSelector(Store.selectVehiclesLoading);
   const error = useSelector(Store.selectVehiclesError);
   const dispatch = useDispatch<Store.DispatchType>();
@@ -22,7 +23,7 @@ export const Vehicles: FC = () => {
 
   const [pageNumber, setPageNumber] = useState<number>(1);
 
-  const listData = [...vehicles].sort((a, b) =>
+  const vehiclesSorted = [...vehicles].sort((a, b) =>
     String(a.name)?.localeCompare(String(b.name))
   );
 
@@ -36,18 +37,18 @@ export const Vehicles: FC = () => {
 
   return (
     <Components.Wrapper>
-      {listData.map((vehicle) => (
+      {vehiclesSorted.map((vehicle) => (
         <Components.ListItem
           key={vehicle.id}
           onClick={() => navigate(`${Types.PATH.VEHICLES}/${vehicle.id}`)}
         >
-          <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
+          <Components.Avatar src={vehicle.image} />
           {vehicle.name}
         </Components.ListItem>
       ))}
       <Pagination
         current={pageNumber}
-        total={39}
+        total={count}
         pageSize={10}
         onChange={(page) => setPageNumber(page)}
         showSizeChanger={false}

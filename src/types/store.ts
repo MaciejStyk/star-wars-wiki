@@ -14,6 +14,7 @@ export interface AppState {
 
 export interface ICharactersReducer {
   data: ICharacter[];
+  count?: number;
   loading: ICharactersLoading;
   error: ICharactersError;
 }
@@ -30,6 +31,7 @@ export interface ICharactersError {
 
 export interface IVehiclesReducer {
   data: IVehicle[];
+  count?: number;
   loading: IVehiclesLoading;
   error: IVehiclesError;
 }
@@ -46,6 +48,7 @@ export interface IVehiclesError {
 
 export interface IPlanetsReducer {
   data: IPlanet[];
+  count?: number;
   loading: IPlanetsLoading;
   error: IPlanetsError;
 }

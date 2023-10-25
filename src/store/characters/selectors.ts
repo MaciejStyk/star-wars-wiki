@@ -15,6 +15,12 @@ export const selectCharactersById = (ids: string[]) =>
   createSelector(selectCharacters, (characters) =>
     characters.filter((character) => ids.includes(character.id))
   );
+
+export const selectCharactersCount: Selector<
+  Types.AppState,
+  number | undefined
+> = ({ characters }) => characters.count;
+
 export const selectCharactersLoading: Selector<
   Types.AppState,
   Types.ICharactersLoading

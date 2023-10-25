@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
+import { CHARACTERS_IMAGES, CHARACTER_AVATAR } from "const";
 import * as Types from "types";
 import * as Utils from "utils";
 
@@ -24,10 +25,15 @@ export const charactersReducer = createReducer(initialState, (builder) => {
     .addCase(fetchCharacters.fulfilled, (state, action) => {
       state.error.fetchCharacters = undefined;
       state.loading.fetchCharacters = false;
-      state.data = action.payload.map((character: Types.ICharacter) => ({
-        ...character,
-        id: Utils.extractIdFrom(character.url),
-      }));
+      state.count = action.payload.count;
+      state.data = action.payload.results.map((character: Types.ICharacter) => {
+        const characterId = Utils.extractIdFrom(character.url);
+        return {
+          ...character,
+          id: characterId,
+          image: CHARACTERS_IMAGES[Number(characterId) - 1] || CHARACTER_AVATAR,
+        };
+      });
     })
     .addCase(fetchCharacters.rejected, (state, action) => {
       state.error.fetchCharacters = action.payload;
@@ -38,9 +44,11 @@ export const charactersReducer = createReducer(initialState, (builder) => {
       state.loading.fetchCharacter = true;
     })
     .addCase(fetchCharacter.fulfilled, (state, action) => {
+      const characterId = Utils.extractIdFrom(action.payload.url);
       const fetchedCharacter = {
         ...action.payload,
-        id: Utils.extractIdFrom(action.payload.url),
+        id: characterId,
+        image: CHARACTERS_IMAGES[Number(characterId) - 1] || CHARACTER_AVATAR,
       };
       state.error.fetchCharacter = undefined;
       state.loading.fetchCharacter = false;

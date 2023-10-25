@@ -14,6 +14,7 @@ export interface ICharacter {
   vehicles: string[];
   starships: string[];
   url: string;
+  image: string;
 }
 
 export interface IVehicle {
@@ -32,6 +33,7 @@ export interface IVehicle {
   pilots: string[];
   films: string[];
   url: string;
+  image: string;
 }
 
 export interface IPlanet {
@@ -48,6 +50,7 @@ export interface IPlanet {
   residents: [];
   films: string[];
   url: string;
+  image: string;
 }
 
 export * from "./routes";

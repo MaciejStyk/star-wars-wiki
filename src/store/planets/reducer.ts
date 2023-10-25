@@ -1,5 +1,6 @@
 import { createReducer } from "@reduxjs/toolkit";
 
+import { PLANET_IMAGES, PLANET_AVATAR } from "const";
 import * as Types from "types";
 import * as Utils from "utils";
 
@@ -20,10 +21,15 @@ export const planetsReducer = createReducer(initialState, (builder) => {
     .addCase(fetchPlanets.fulfilled, (state, action) => {
       state.error.fetchPlanets = undefined;
       state.loading.fetchPlanets = false;
-      state.data = action.payload.map((planet: Types.IPlanet) => ({
-        ...planet,
-        id: Utils.extractIdFrom(planet.url),
-      }));
+      state.count = action.payload.count;
+      state.data = action.payload.results.map((planet: Types.IPlanet) => {
+        const planetId = Utils.extractIdFrom(planet.url);
+        return {
+          ...planet,
+          id: planetId,
+          image: PLANET_IMAGES[Number(planetId) - 1] || PLANET_AVATAR,
+        };
+      });
     })
     .addCase(fetchPlanets.rejected, (state, action) => {
       state.error.fetchPlanets = action.payload;
@@ -34,9 +40,11 @@ export const planetsReducer = createReducer(initialState, (builder) => {
       state.loading.fetchPlanet = true;
     })
     .addCase(fetchPlanet.fulfilled, (state, action) => {
+      const planetId = Utils.extractIdFrom(action.payload.url);
       const fetchedPlanet = {
         ...action.payload,
-        id: Utils.extractIdFrom(action.payload.url),
+        id: planetId,
+        image: PLANET_IMAGES[Number(planetId) - 1] || PLANET_AVATAR,
       };
       state.error.fetchPlanet = undefined;
       state.loading.fetchPlanet = false;

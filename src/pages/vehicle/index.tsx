@@ -15,7 +15,7 @@ import * as Utils from "utils";
 export const Vehicle: FC = () => {
   const {
     spacing: { md },
-    palette: { secondaryBlack },
+    palette: { black },
   } = useTheme();
 
   const { vehicleId } = useParams();
@@ -42,9 +42,7 @@ export const Vehicle: FC = () => {
       children:
         vehicle?.pilots.length !== 0 ? (
           charactersLoading.fetchCharacters ? (
-            <Spin
-              indicator={<LoadingOutlined style={{ color: secondaryBlack }} />}
-            />
+            <Spin indicator={<LoadingOutlined style={{ color: black }} />} />
           ) : (
             characters.map((character) => (
               <a
@@ -131,7 +129,7 @@ export const Vehicle: FC = () => {
   return (
     <Components.Wrapper>
       <Components.TitleRow>
-        <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
+        <Components.Avatar src={vehicle?.image} />
         {vehicle?.name}
       </Components.TitleRow>
       <Descriptions

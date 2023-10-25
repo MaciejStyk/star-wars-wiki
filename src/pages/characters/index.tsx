@@ -15,6 +15,7 @@ export const Characters: FC = () => {
   } = useTheme();
 
   const characters = useSelector(Store.selectCharacters);
+  const count = useSelector(Store.selectCharactersCount);
   const loading = useSelector(Store.selectCharactersLoading);
   const error = useSelector(Store.selectCharactersError);
   const dispatch = useDispatch<Store.DispatchType>();
@@ -22,7 +23,7 @@ export const Characters: FC = () => {
 
   const [pageNumber, setPageNumber] = useState<number>(1);
 
-  const listData = [...characters].sort((a, b) =>
+  const charactersSorted = [...characters].sort((a, b) =>
     String(a.name)?.localeCompare(String(b.name))
   );
 
@@ -36,18 +37,18 @@ export const Characters: FC = () => {
 
   return (
     <Components.Wrapper>
-      {listData.map((character) => (
+      {charactersSorted.map((character) => (
         <Components.ListItem
           key={character.id}
           onClick={() => navigate(`${Types.PATH.CHARACTERS}/${character.id}`)}
         >
-          <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
+          <Components.Avatar src={character.image} />
           {character.name}
         </Components.ListItem>
       ))}
       <Pagination
         current={pageNumber}
-        total={82}
+        total={count}
         pageSize={10}
         onChange={(page) => setPageNumber(page)}
         showSizeChanger={false}

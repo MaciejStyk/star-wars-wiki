@@ -15,6 +15,7 @@ export const Planets: FC = () => {
   } = useTheme();
 
   const planets = useSelector(Store.selectPlanets);
+  const count = useSelector(Store.selectPlanetsCount);
   const loading = useSelector(Store.selectPlanetsLoading);
   const error = useSelector(Store.selectPlanetsError);
   const dispatch = useDispatch<Store.DispatchType>();
@@ -22,7 +23,7 @@ export const Planets: FC = () => {
 
   const [pageNumber, setPageNumber] = useState<number>(1);
 
-  const listData = [...planets].sort((a, b) =>
+  const planetsSorted = [...planets].sort((a, b) =>
     String(a.name)?.localeCompare(String(b.name))
   );
 
@@ -36,18 +37,18 @@ export const Planets: FC = () => {
 
   return (
     <Components.Wrapper>
-      {listData.map((planet) => (
+      {planetsSorted.map((planet) => (
         <Components.ListItem
           key={planet.id}
           onClick={() => navigate(`${Types.PATH.PLANETS}/${planet.id}`)}
         >
-          <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
+          <Components.Avatar src={planet.image} />
           {planet.name}
         </Components.ListItem>
       ))}
       <Pagination
         current={pageNumber}
-        total={60}
+        total={count}
         pageSize={10}
         onChange={(page) => setPageNumber(page)}
         showSizeChanger={false}
