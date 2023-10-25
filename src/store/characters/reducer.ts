@@ -3,7 +3,11 @@ import { createReducer } from "@reduxjs/toolkit";
 import * as Types from "types";
 import * as Utils from "utils";
 
-import { fetchCharacters, fetchCharacter } from "./actions";
+import {
+  fetchCharacters,
+  fetchCharacter,
+  fetchCharactersById,
+} from "./actions";
 
 const initialState: Types.ICharactersReducer = {
   data: [],
@@ -52,5 +56,22 @@ export const charactersReducer = createReducer(initialState, (builder) => {
     .addCase(fetchCharacter.rejected, (state, action) => {
       state.error.fetchCharacter = action.payload;
       state.loading.fetchCharacter = false;
+    })
+    .addCase(fetchCharactersById.pending, (state, action) => {
+      state.error.fetchCharacters = undefined;
+      state.loading.fetchCharacters = true;
+    })
+    .addCase(fetchCharactersById.fulfilled, (state, action) => {
+      const fetchedCharacters = action.payload.map((character) => ({
+        ...character,
+        id: Utils.extractIdFrom(character.url),
+      }));
+      state.error.fetchCharacters = undefined;
+      state.loading.fetchCharacters = false;
+      state.data = fetchedCharacters;
+    })
+    .addCase(fetchCharactersById.rejected, (state, action) => {
+      state.error.fetchCharacters = action.payload;
+      state.loading.fetchCharacters = false;
     });
 });

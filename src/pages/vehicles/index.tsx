@@ -35,7 +35,7 @@ export const Vehicles: FC = () => {
   if (error.fetchVehicles) return <Pages.NotFound />;
 
   return (
-    <Components.ListWrapper>
+    <Components.Wrapper>
       {listData.map((vehicle) => (
         <Components.ListItem
           key={vehicle.id}
@@ -53,6 +53,6 @@ export const Vehicles: FC = () => {
         showSizeChanger={false}
         style={{ paddingTop: md, paddingBottom: md }}
       />
-    </Components.ListWrapper>
+    </Components.Wrapper>
   );
 };

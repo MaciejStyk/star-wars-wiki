@@ -12,6 +12,7 @@ export const Header = styled.header`
   display: flex;
   justify-content: center;
   box-shadow: 0px 12px 20px 0px rgba(145, 158, 171, 0.18);
+  z-index: 1;
 `;
 
 export const Wrapper = styled.div`
@@ -30,6 +31,10 @@ export const Wrapper = styled.div`
 
   @media (min-width: 450px) {
     font-size: 1.25rem;
+  }
+
+  @media (min-width: 550px) {
+    font-size: 1.5rem;
   }
 `;
 

@@ -1,15 +1,14 @@
-import { FC, ReactNode } from "react";
+import styled from "styled-components";
 
-import * as Styled from "./styled";
+import { HEADER_SIZE } from "const";
 
-interface IFrame {
-  children: ReactNode;
-}
-
-export const Frame: FC<IFrame> = ({ children }) => {
-  return (
-    <Styled.Main>
-      <Styled.Wrapper>{children}</Styled.Wrapper>
-    </Styled.Main>
-  );
-};
+export const Frame = styled.main`
+  position: fixed;
+  top: ${HEADER_SIZE}px;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow-y: overlay;
+  display: flex;
+  justify-content: center;
+`;

@@ -35,7 +35,7 @@ export const Characters: FC = () => {
   if (error.fetchCharacters) return <Pages.NotFound />;
 
   return (
-    <Components.ListWrapper>
+    <Components.Wrapper>
       {listData.map((character) => (
         <Components.ListItem
           key={character.id}
@@ -53,6 +53,6 @@ export const Characters: FC = () => {
         showSizeChanger={false}
         style={{ paddingTop: md, paddingBottom: md }}
       />
-    </Components.ListWrapper>
+    </Components.Wrapper>
   );
 };

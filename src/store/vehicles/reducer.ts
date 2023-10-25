@@ -34,13 +34,16 @@ export const vehiclesReducer = createReducer(initialState, (builder) => {
       state.loading.fetchVehicle = true;
     })
     .addCase(fetchVehicle.fulfilled, (state, action) => {
-      const fetchedVehicle = action.payload;
+      const fetchedVehicle = {
+        ...action.payload,
+        id: Utils.extractIdFrom(action.payload.url),
+      };
       state.error.fetchVehicle = undefined;
       state.loading.fetchVehicle = false;
       state.data =
         state.data.length !== 0
-          ? state.data.map((vehicle) =>
-              vehicle?.id === fetchedVehicle?.id ? fetchedVehicle : vehicle
+          ? state.data.map((character) =>
+              character?.id === fetchedVehicle?.id ? fetchedVehicle : character
             )
           : [fetchedVehicle];
     })

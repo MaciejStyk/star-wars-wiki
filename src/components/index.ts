@@ -3,6 +3,7 @@ export * from "./frame";
 export * from "./global-style";
 export * from "./header";
 export * from "./link";
-export * from "./list";
+export * from "./list-item";
 export * from "./portrait";
 export * from "./title-row";
+export * from "./wrapper";

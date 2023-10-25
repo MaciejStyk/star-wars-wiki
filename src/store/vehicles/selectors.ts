@@ -7,7 +7,7 @@ export const selectVehicles: Selector<Types.AppState, Types.IVehicle[]> = ({
 }) => vehicles.data;
 
 export const selectVehicleById = (id?: string) =>
-  createSelector(selectVehicles, (vehicles) =>
+  createSelector([selectVehicles], (vehicles) =>
     vehicles.find((vehicle) => vehicle?.id === id)
   );
 

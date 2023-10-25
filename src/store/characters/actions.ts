@@ -34,3 +34,22 @@ export const fetchCharacter = createAsyncThunk(
     }
   }
 );
+
+export const fetchCharactersById = createAsyncThunk(
+  "[Characters] Fetch characters by id",
+  async (characterIds: string[], thunkAPI) => {
+    try {
+      const fetchPromises = characterIds.map(async (characterId) => {
+        const response = await axios.get(
+          `${BASE_URL}${Types.ENDPOINTS.CHARACTERS}/${characterId}/`
+        );
+        return response.data;
+      });
+      const data = await Promise.all(fetchPromises);
+      return data;
+    } catch (error) {
+      toast.error(`Failed to fetch characters. ${error}`);
+      return thunkAPI.rejectWithValue("Failed to fetch characters.");
+    }
+  }
+);

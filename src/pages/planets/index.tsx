@@ -35,7 +35,7 @@ export const Planets: FC = () => {
   if (error.fetchPlanets) return <Pages.NotFound />;
 
   return (
-    <Components.ListWrapper>
+    <Components.Wrapper>
       {listData.map((planet) => (
         <Components.ListItem
           key={planet.id}
@@ -53,6 +53,6 @@ export const Planets: FC = () => {
         showSizeChanger={false}
         style={{ paddingTop: md, paddingBottom: md }}
       />
-    </Components.ListWrapper>
+    </Components.Wrapper>
   );
 };

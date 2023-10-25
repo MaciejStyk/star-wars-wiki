@@ -1,12 +1,5 @@
 import styled from "styled-components";
 
-export const ListWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const ListItem = styled.div`
   width: 100%;
   display: flex;
@@ -15,7 +8,6 @@ export const ListItem = styled.div`
   padding: ${({ theme }) => theme.spacing.sm};
   border-bottom: 1px solid ${({ theme }) => theme.palette.lightGray};
   font-weight: 600;
-  line-height: 1.75rem;
   transition: 0.2s;
 
   &:hover {

@@ -40,7 +40,12 @@ export const planetsReducer = createReducer(initialState, (builder) => {
       };
       state.error.fetchPlanet = undefined;
       state.loading.fetchPlanet = false;
-      state.data = [fetchedPlanet];
+      state.data =
+        state.data.length !== 0
+          ? state.data.map((character) =>
+              character?.id === fetchedPlanet?.id ? fetchedPlanet : character
+            )
+          : [fetchedPlanet];
     })
     .addCase(fetchPlanet.rejected, (state, action) => {
       state.error.fetchPlanet = action.payload;

@@ -1,7 +1,7 @@
-import { FC, Fragment, useEffect, useState } from "react";
+import { FC, useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { Descriptions, Button, Spin, Typography, Divider } from "antd";
+import { Descriptions, Button, Spin } from "antd";
 import type { DescriptionsProps } from "antd";
 import { LoadingOutlined } from "@ant-design/icons";
 
@@ -43,12 +43,9 @@ export const Character: FC = () => {
             indicator={<LoadingOutlined style={{ color: secondaryBlack }} />}
           />
         ) : (
-          <Typography.Link
-            href={`${Types.PATH.PLANETS}/${homePlanetId}`}
-            style={{ fontSize: md }}
-          >
+          <a href={`${Types.PATH.PLANETS}/${homePlanetId}`}>
             {homePlanet?.name}
-          </Typography.Link>
+          </a>
         )
       ) : (
         "---"
@@ -64,16 +61,10 @@ export const Character: FC = () => {
               indicator={<LoadingOutlined style={{ color: secondaryBlack }} />}
             />
           ) : (
-            vehicles.map((vehicle, index) => (
-              <Fragment key={vehicle.id}>
-                <Typography.Link
-                  href={`${Types.PATH.VEHICLES}/${vehicle.id}`}
-                  style={{ fontSize: md }}
-                >
-                  {vehicle.name}
-                </Typography.Link>
-                {index !== vehicles.length - 1 && <Divider type="vertical" />}
-              </Fragment>
+            vehicles.map((vehicle) => (
+              <a key={vehicle.id} href={`${Types.PATH.VEHICLES}/${vehicle.id}`}>
+                {vehicle.name}
+              </a>
             ))
           )
         ) : (
@@ -147,7 +138,7 @@ export const Character: FC = () => {
   if (error.fetchCharacter) return <Pages.NotFound />;
 
   return (
-    <>
+    <Components.Wrapper>
       <Components.TitleRow>
         <Components.Avatar src="https://static.wikia.nocookie.net/starwars/images/d/d9/Luke-rotjpromo.jpg" />
         {character?.name}
@@ -158,7 +149,8 @@ export const Character: FC = () => {
         labelStyle={{ width: "120px", fontSize: md }}
         contentStyle={{
           display: "flex",
-          alignItems: "center",
+          flexDirection: "column",
+          justifyContent: "center",
           fontSize: md,
         }}
       />
@@ -169,6 +161,6 @@ export const Character: FC = () => {
       >
         Go to characters
       </Button>
-    </>
+    </Components.Wrapper>
   );
 };
