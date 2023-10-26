@@ -30,4 +30,8 @@ export const ROUTES: Array<Types.IRoute> = [
     path: Types.PATH.VEHICLE,
     element: <Pages.Vehicle />,
   },
+  {
+    path: "*",
+    element: <Pages.NotFound />,
+  },
 ];
